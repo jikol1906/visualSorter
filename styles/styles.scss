@@ -1,0 +1,82 @@
+html {
+  height: 100%;
+  display: flex;
+
+  align-items: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.box {
+  background-color: #f4f4f4;
+  margin-left: 1rem;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.array {
+  --elem-width: 50px;
+  --elem-margin: 2px;
+  --pointer-size: 30px;
+
+  .movable {
+    transform: translateX(
+      calc((var(--elem-width) + var(--elem-margin) * 2) * var(--offset))
+    );
+  }
+
+  &__container {
+    display: flex;
+    align-items: flex-end;
+    height: 250px;
+  }
+
+  &__elem {
+    position: relative;
+    width: var(--elem-width);
+    margin: 0 var(--elem-margin);
+    background-color: black;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 0.7rem;
+    transition: transform 0.7s linear;
+  }
+
+  &__pointers {
+    display: flex;
+    flex-direction: column;
+
+    span {
+      border: 1px solid black;
+      width: var(--pointer-size);
+      height: var(--pointer-size);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      margin: 4px
+        calc((var(--elem-width) - var(--pointer-size)) / 2 + var(--elem-margin));
+
+      &:first-child {
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+button {
+  margin-top: 2rem;
+  padding: 1.2rem 2rem;
+  background-color: firebrick;
+  border: none;
+}
