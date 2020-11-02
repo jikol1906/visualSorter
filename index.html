@@ -6,16 +6,25 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="box">
-      <div class="array">
-        <div class="array__container"></div>
-        <div class="array__pointers">
-          <span id="j" class="movable">j</span>
-          <span id="i" class="movable">i</span>
+    <header>
+      <h1 style="text-align: center;">Sorting Algorithm Visualizer</h1s>
+    </header>
+    <main class="container">
+      <div class="box">
+        <div class="array">
+          <div class="array__container"></div>
+          <div class="array__pointers">
+            <span id="j" class="movable">j</span>
+            <span id="i" class="movable">i</span>
+          </div>
         </div>
+        <button id="gen">Do next step</button>
       </div>
-    </div>
-    <button id="gen">Swap random</button>
+      <div>
+        <h2 id="statusmessage"></>
+      </div>
+    </main>
+
     <script src="scripts/script.ts"></script>
   </body>
 </html>

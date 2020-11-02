@@ -4,25 +4,19 @@ import $ from 'jquery';
 
 const arrayContainer = $('.array__container');
 const button = $('#gen');
-
-
-
+const statusmessage = $('#statusmessage');
 
 button.on('click', () => {
-
   doNextStep();
 });
 
 let canSwap = true;
-let arr : number[] = [];
-
-
+let arr: number[] = [];
 
 function genNewArr(): void {
-  
   arrayContainer.empty();
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 5; i++) {
     const num = Math.ceil(Math.random() * 130 + 20);
 
     arr.push(num);
@@ -32,33 +26,21 @@ function genNewArr(): void {
         class: 'array__elem movable',
         id: i,
         css: {
-          'height': `${(num / 150) * 100}%`,
-          '--offset':0
+          height: `${(num / 150) * 100}%`,
         },
       }).text(num)
     );
   }
 }
 
-genNewArr();
-
 function swap(i: number, j: number) {
-
   if (canSwap) {
     canSwap = false;
-    swapInArr(i, j);
     swapInUI(i, j);
     setTimeout(() => {
       canSwap = true;
-    }, .7 * 1000);
+    }, 0.7 * 1000);
   }
-  
-}
-
-function swapInArr(i: number, j: number) {
-  const temp = arr[i];
-  arr[i] = arr[j];
-  arr[j] = temp;
 }
 
 function swapInUI(i: number, j: number) {
@@ -76,41 +58,45 @@ function swapInUI(i: number, j: number) {
 }
 
 function moveElem(elm: JQuery<HTMLElement>, stepsToMove: number) {
-  const currentStepsMoved = parseInt(elm.css('--offset'));
+  const currentStepsMoved = parseInt(elm.css('--offset')) || 0;
   elm.css('--offset', stepsToMove + currentStepsMoved);
 }
 
-function movePointer(p: 'i' | 'j',steps:number) {
+function movePointer(p: 'i' | 'j', index: number) {
   const pointer = $(`#${p}`);
-  const currentStepsMoved = pointer.css('--offset') || 0
-  pointer.css('--offset',+currentStepsMoved+steps)
+  pointer.css('--offset', index);
 }
 
-let tg = 0;
+genNewArr();
+const ss = new SelectionSort(arr);
+
+
+movePointer('i', 0);
+movePointer('j', 1);
 
 function doNextStep() {
-  switch(tg) {
-    case 0:
-      movePointer('i',1);
-      tg++;
-      break;
-    case 1:
-      swap(0,1);
-      tg++
-      break;
-    case 2:
-      movePointer('j',4);
-      tg++
-      break;
-    case 3:
-      movePointer('j',-2);
-      tg++
-      break;
-    case 4:
-      movePointer('j',-2);
-      tg++
-      break;
-  }
+  ss.nextStep();
+  statusmessage.text(ss.statusmessage);
+  ss.getActions().forEach((s) => {
+    switch (s.action) {
+      case 'MOVE_POINTER':
+        if (s.pointer === 'j') {
+          movePointer('j', s.index);
+        } else {
+          movePointer('i', s.index);
+        }
+        break;
+      case 'SWAP':
+        swap(s.indexOne,s.indexTwo);
+        break;
+      case 'FINISHED':
+        // clearInterval(id)
+    }
+  });
 }
+
+// const id = setInterval(() => {
+//   doNextStep();
+// },150 )
 
 
