@@ -6,7 +6,7 @@ export type SortAction =
     }
   | {
       action: 'MOVE_POINTER';
-      pointer: 'j' | 'i';
+      pointer: string;
       index: number;
     }
   | {
@@ -21,4 +21,5 @@ export interface SortingAlgorithmIterator {
   nextStep(): void;
   getActions(): SortAction[];
   getStatusMessage() : string;
+  getPointers(): {[pointerName:string]:number}
 }

@@ -1,15 +1,18 @@
-import { SortAction, SortingAlgorithmIterator } from './SortingAlgorithmIterator';
+import {
+  SortAction,
+  SortingAlgorithmIterator,
+} from './SortingAlgorithmIterator';
 import $ from 'jquery';
 
-type Pointers = {[index:string]: number}
-
-export abstract class SortingBase {  
-  
+export abstract class SortingBase implements SortingAlgorithmIterator {
   protected statusMessage: string;
-  protected i: number;
-  protected j: number;
+  protected actions: SortAction[];
+  constructor(
+    protected arr: number[],
+    protected readonly pointers: { [index: string]: number }
+  ) {}
 
-  constructor(protected arr: number[]) {}
+  abstract nextStep(): void;
 
   protected swap(i: number, j: number) {
     const temp = this.arr[i];
@@ -17,10 +20,15 @@ export abstract class SortingBase {
     this.arr[j] = temp;
   }
 
+  public getPointers() {
+    return this.pointers;
+  }
+
   public getStatusMessage() {
     return this.statusMessage;
   }
-  
-  
 
+  public getActions() {
+    return this.actions;
+  }
 }

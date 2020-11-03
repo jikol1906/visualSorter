@@ -1,18 +1,20 @@
 import { SortAction, SortingAlgorithmIterator } from './SortingAlgorithmIterator';
 import { SortingBase } from './SortingBase';
 
-export class BubbleSort extends SortingBase implements SortingAlgorithmIterator {
+export class BubbleSort extends SortingBase {
 
     constructor(arr:number[]) {
-        super(arr);
+        super(arr,{i:1});
     }
     
-    nextStep(): void {
+    nextStep() {
+        if(this.arr[this.pointers.i - 1] > this.arr[this.pointers.i]) {
+            
+        }
+
         
     }
-    getActions(): SortAction[] {
-        throw new Error('Method not implemented.');
-    }
+
 
 
 }

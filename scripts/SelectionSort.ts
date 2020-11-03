@@ -1,37 +1,23 @@
-import {
-  SortAction,
-  SortingAlgorithmIterator,
-} from './SortingAlgorithmIterator';
+import { SortingAlgorithmIterator } from './SortingAlgorithmIterator';
 import { SortingBase } from './SortingBase';
 
-export class SelectionSort
-  extends SortingBase
-  implements SortingAlgorithmIterator {
-  private actions: SortAction[];
-
-
+export class SelectionSort extends SortingBase {
   private currMinValue: number;
 
   constructor(arr: number[]) {
-    super(arr);
-    this.i = 0;
-    this.j = 1;
+    super(arr, { j: 1, i: 0 });
     this.currMinValue = 0;
     this.actions = [];
-  }
-
-  public getActions() {
-    return this.actions;
   }
 
   public nextStep() {
     this.actions = [];
 
-    if (this.arr[this.j] < this.arr[this.currMinValue]) {
+    if (this.arr[this.pointers.j] < this.arr[this.currMinValue]) {
       this.markNewMinimumValue();
-    } else if (this.j === this.arr.length - 1) {
+    } else if (this.pointers.j === this.arr.length - 1) {
       this.doSwap();
-      if (this.i !== this.arr.length - 2) {
+      if (this.pointers.i !== this.arr.length - 2) {
         this.startNewRound();
       } else {
         this.finish();
@@ -50,55 +36,57 @@ export class SelectionSort
 
   private markNewMinimumValue() {
     this.statusMessage = `mark ${
-      this.arr[this.j]
+      this.arr[this.pointers.j]
     } as new current minimum value`;
-    this.currMinValue = this.j;
+    this.currMinValue = this.pointers.j;
     this.actions.push({
       action: 'MARK_AS_MINIMUM',
-      index: this.j,
+      index: this.pointers.j,
     });
   }
 
   private doSwap() {
-    if (this.currMinValue !== this.i) {
-      this.statusMessage = `swapping ${this.arr[this.i]} and ${
+    if (this.currMinValue !== this.pointers.i) {
+      this.statusMessage = `swapping ${this.arr[this.pointers.i]} and ${
         this.arr[this.currMinValue]
       }`;
       this.actions.push({
         action: 'SWAP',
         indexOne: this.currMinValue,
-        indexTwo: this.i,
+        indexTwo: this.pointers.i,
       });
-      this.swap(this.i, this.currMinValue);
+      this.swap(this.pointers.i, this.currMinValue);
     } else {
-      this.statusMessage = `No swaps. ${this.arr[this.i]} is already sorted`;
+      this.statusMessage = `No swaps. ${
+        this.arr[this.pointers.i]
+      } is already sorted`;
     }
   }
 
   private incrementJ() {
-    this.j++;
+    this.pointers.j++;
     this.statusMessage = 'Incrementing j...';
     this.actions.push({
       action: 'MOVE_POINTER',
       pointer: 'j',
-      index: this.j,
+      index: this.pointers.j,
     });
   }
 
   private startNewRound() {
-    this.i++;
-    this.j = this.i + 1;
-    this.currMinValue = this.i;
+    this.pointers.i++;
+    this.pointers.j = this.pointers.i + 1;
+    this.currMinValue = this.pointers.i;
 
     this.actions.push({
       action: 'MOVE_POINTER',
       pointer: 'i',
-      index: this.i,
+      index: this.pointers.i,
     });
     this.actions.push({
       action: 'MOVE_POINTER',
       pointer: 'j',
-      index: this.j,
+      index: this.pointers.j,
     });
   }
 }

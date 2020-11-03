@@ -1,25 +1,47 @@
+import { BubbleSort } from './BubbleSort';
 import { SortingAlgorithmIterator } from './SortingAlgorithmIterator';
 import { SelectionSort } from './SelectionSort';
 import '../styles/styles.scss';
 import $ from 'jquery';
 
 const arrayContainer = $('.array__container');
-const button = $('#gen');
+const nextStepButton = $('#next-step');
+const newArrayButton = $('#new');
 const statusmessage = $('#statusmessage');
 let canSwap = true;
 let arr: number[] = [];
-genNewArr();
+let sortingAlgoIterator: SortingAlgorithmIterator;
 
-let ss: SortingAlgorithmIterator = new SelectionSort(arr);
+initialize();
 
-movePointer('i', 0);
-movePointer('j', 1);
-
-button.on('click', () => {
+nextStepButton.on('click', () => {
   doNextStep();
 });
 
+newArrayButton.on('click', () => {
+  initialize();
+});
 
+function initialize() {
+  genNewArr();
+
+  sortingAlgoIterator = new SelectionSort(arr);
+
+  addPointers();
+}
+
+function addPointers() {
+  const pointers = sortingAlgoIterator.getPointers();
+
+  $('.array__pointers').empty();
+
+  Object.keys(pointers).forEach((pointer) => {
+    $(`<span id="${pointer}" class="movable">${pointer}</span>`).appendTo(
+      '.array__pointers'
+    );
+    movePointer(pointer, pointers[pointer]);
+  });
+}
 
 function genNewArr(): void {
   arr = [];
@@ -71,60 +93,26 @@ function moveElem(elm: JQuery<HTMLElement>, stepsToMove: number) {
   elm.css('--offset', stepsToMove + currentStepsMoved);
 }
 
-function movePointer(p: 'i' | 'j', index: number) {
+function movePointer(p: string, toIndex: number) {
   const pointer = $(`#${p}`);
-  pointer.css('--offset', index);
+  pointer.css('--offset', toIndex);
 }
-
-
-
-function reset() {
-  genNewArr();
-  ss = new SelectionSort(arr);
-
-  movePointer('i', 0);
-  movePointer('j', 1);
-}
-
-// $('.array__elem').each(i => {
-//   console.log(i);
-//   console.log($(this));
-
-//   $(this).css({
-//     // animation:'jump 1s ease-in-out;',
-//     // 'animation-delay':i+'s'
-//     background:'red'
-//   })
-// })
-
-// $('.array__elem').each(function (index) {
-//   $(this).css({
-//     animation: `jump 2s ease-in-out infinite`,
-//     'animation-delay': index * 0.05 + 's',
-//   });
-// });
 
 function doNextStep() {
-  ss.nextStep();
-  statusmessage.text(ss.getStatusMessage());
-  ss.getActions().forEach((s) => {
+  sortingAlgoIterator.nextStep();
+  statusmessage.text(sortingAlgoIterator.getStatusMessage());
+  sortingAlgoIterator.getActions().forEach((s) => {
     switch (s.action) {
       case 'MOVE_POINTER':
-        if (s.pointer === 'j') {
-          movePointer('j', s.index);
-        } else {
-          movePointer('i', s.index);
-        }
+        movePointer(s.pointer, s.index);
         break;
       case 'SWAP':
         swap(s.indexOne, s.indexTwo);
         break;
       case 'FINISHED':
-        // reset();
+      // reset();
     }
   });
 }
 
-// const id = setInterval(() => {
-//   doNextStep();
-// }, 200);
+// 
