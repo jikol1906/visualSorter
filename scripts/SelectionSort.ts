@@ -1,48 +1,27 @@
-export type SortAction =
-  | {
-      action: 'SWAP';
-      indexOne: number;
-      indexTwo: number;
-    }
-  | {
-      action: 'MOVE_POINTER';
-      pointer: 'j' | 'i';
-      index: number;
-    }
-  | {
-      action: 'MARK_AS_MINIMUM';
-      index: number;
-    }
-  | {
-      action: 'FINISHED';
-    };
+import {
+  SortAction,
+  SortingAlgorithmIterator,
+} from './SortingAlgorithmIterator';
+import { SortingBase } from './SortingBase';
 
-export class SelectionSort {
+export class SelectionSort
+  extends SortingBase
+  implements SortingAlgorithmIterator {
   private actions: SortAction[];
-  private statusMessage: string;
-  private i: number;
-  private j: number;
+
+
   private currMinValue: number;
 
-  constructor(private arr: number[]) {
+  constructor(arr: number[]) {
+    super(arr);
     this.i = 0;
     this.j = 1;
     this.currMinValue = 0;
     this.actions = [];
   }
 
-  private swap(i: number, j: number) {
-    const temp = this.arr[i];
-    this.arr[i] = this.arr[j];
-    this.arr[j] = temp;
-  }
-
   public getActions() {
     return this.actions;
-  }
-
-  public get statusmessage() {
-    return this.statusMessage;
   }
 
   public nextStep() {

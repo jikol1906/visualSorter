@@ -11,6 +11,7 @@ body {
 }
 
 .container {
+  padding:3rem;
   max-width:1000px;
   margin: 0 auto;
   display: flex;
@@ -34,7 +35,6 @@ body {
 
 .box {
   margin:0 auto;
-  padding: 1rem;
   border-radius: 5px;
   text-align: center;
 }
@@ -68,6 +68,7 @@ body {
     align-items: flex-end;
     padding-bottom: 0.7rem;
     transition: transform 0.7s linear;
+    
   }
 
   &__pointers {
@@ -97,4 +98,18 @@ button {
   padding: 1.2rem 2rem;
   background-color: firebrick;
   border: none;
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0);
+  }
+  
+  50% {
+    transform: translateY(-50px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+
 }

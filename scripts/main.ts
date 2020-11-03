@@ -1,3 +1,4 @@
+import { SortingAlgorithmIterator } from './SortingAlgorithmIterator';
 import { SelectionSort } from './SelectionSort';
 import '../styles/styles.scss';
 import $ from 'jquery';
@@ -5,18 +6,26 @@ import $ from 'jquery';
 const arrayContainer = $('.array__container');
 const button = $('#gen');
 const statusmessage = $('#statusmessage');
+let canSwap = true;
+let arr: number[] = [];
+genNewArr();
+
+let ss: SortingAlgorithmIterator = new SelectionSort(arr);
+
+movePointer('i', 0);
+movePointer('j', 1);
 
 button.on('click', () => {
   doNextStep();
 });
 
-let canSwap = true;
-let arr: number[] = [];
+
 
 function genNewArr(): void {
+  arr = [];
   arrayContainer.empty();
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 10; i++) {
     const num = Math.ceil(Math.random() * 130 + 20);
 
     arr.push(num);
@@ -67,16 +76,37 @@ function movePointer(p: 'i' | 'j', index: number) {
   pointer.css('--offset', index);
 }
 
-genNewArr();
-const ss = new SelectionSort(arr);
 
 
-movePointer('i', 0);
-movePointer('j', 1);
+function reset() {
+  genNewArr();
+  ss = new SelectionSort(arr);
+
+  movePointer('i', 0);
+  movePointer('j', 1);
+}
+
+// $('.array__elem').each(i => {
+//   console.log(i);
+//   console.log($(this));
+
+//   $(this).css({
+//     // animation:'jump 1s ease-in-out;',
+//     // 'animation-delay':i+'s'
+//     background:'red'
+//   })
+// })
+
+// $('.array__elem').each(function (index) {
+//   $(this).css({
+//     animation: `jump 2s ease-in-out infinite`,
+//     'animation-delay': index * 0.05 + 's',
+//   });
+// });
 
 function doNextStep() {
   ss.nextStep();
-  statusmessage.text(ss.statusmessage);
+  statusmessage.text(ss.getStatusMessage());
   ss.getActions().forEach((s) => {
     switch (s.action) {
       case 'MOVE_POINTER':
@@ -87,16 +117,14 @@ function doNextStep() {
         }
         break;
       case 'SWAP':
-        swap(s.indexOne,s.indexTwo);
+        swap(s.indexOne, s.indexTwo);
         break;
       case 'FINISHED':
-        // clearInterval(id)
+        // reset();
     }
   });
 }
 
 // const id = setInterval(() => {
 //   doNextStep();
-// },150 )
-
-
+// }, 200);
