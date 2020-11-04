@@ -49,7 +49,7 @@ export class SelectionSort extends SortingBase {
     if (this.currMinValue !== this.pointers.i) {
       this.statusMessage = `swapping ${this.arr[this.pointers.i]} and ${
         this.arr[this.currMinValue]
-      }`;
+      } and incrementing i`;
       this.actions.push({
         action: 'SWAP',
         indexOne: this.currMinValue,

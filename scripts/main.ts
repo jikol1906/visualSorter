@@ -4,6 +4,10 @@ import { SelectionSort } from './SelectionSort';
 import '../styles/styles.scss';
 import $ from 'jquery';
 
+const swapAnimationTime = +$(':root')
+  .css('--swap-animation-time')
+  .replace('s', '');
+
 const arrayContainer = $('.array__container');
 const nextStepButton = $('#next-step');
 const newArrayButton = $('#new');
@@ -11,6 +15,7 @@ const statusmessage = $('#statusmessage');
 let canSwap = true;
 let arr: number[] = [];
 let sortingAlgoIterator: SortingAlgorithmIterator;
+console.log(swapAnimationTime);
 
 initialize();
 
@@ -23,6 +28,7 @@ newArrayButton.on('click', () => {
 });
 
 function initialize() {
+  statusmessage.text('');
   genNewArr();
 
   sortingAlgoIterator = new SelectionSort(arr);
@@ -52,15 +58,15 @@ function genNewArr(): void {
 
     arr.push(num);
 
-    arrayContainer.append(
-      $('<div>', {
-        class: 'array__elem movable',
-        id: i,
-        css: {
-          height: `${(num / 150) * 100}%`,
-        },
-      }).text(num)
-    );
+    const newElem = $('<div>', {
+      class: 'array__elem movable',
+      id: i,
+      css: {
+        height: `${(num / 150) * 100}%`,
+      },
+    }).append(`<div>${num}</div>`);
+
+    arrayContainer.append(newElem);
   }
 }
 
@@ -89,8 +95,28 @@ function swapInUI(i: number, j: number) {
 }
 
 function moveElem(elm: JQuery<HTMLElement>, stepsToMove: number) {
+  applyScalingAnimation(elm);
+
   const currentStepsMoved = parseInt(elm.css('--offset')) || 0;
   elm.css('--offset', stepsToMove + currentStepsMoved);
+}
+
+function applyScalingAnimation(elm: JQuery<HTMLElement>) {
+  elm.css('z-index', '100');
+
+  const child = elm.children();
+  child.css({
+    animation: 'scaleUp ease-in-out var(--swap-animation-time)',
+  });
+
+  setTimeout(() => {
+    child.css({ animation: '' });
+    elm.css('z-index', '1');
+  }, swapAnimationTime * 1000);
+}
+
+function markElem(index: number) {
+  $(`#${index}`).css('background-color', 'red');
 }
 
 function movePointer(p: string, toIndex: number) {
@@ -109,10 +135,12 @@ function doNextStep() {
       case 'SWAP':
         swap(s.indexOne, s.indexTwo);
         break;
+      case 'MARK_AS_MINIMUM':
+      // markElem(s.index)
       case 'FINISHED':
       // reset();
     }
   });
 }
 
-// 
+//

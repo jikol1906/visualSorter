@@ -2,6 +2,10 @@ html {
   height: 100%;
 }
 
+:root {
+  --swap-animation-time: .8s;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -11,8 +15,8 @@ body {
 }
 
 .container {
-  padding:3rem;
-  max-width:1000px;
+  padding: 3rem;
+  max-width: 1000px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -20,7 +24,7 @@ body {
 
   > div:last-child {
     flex: 1;
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: center;
 
@@ -28,21 +32,19 @@ body {
       text-align: center;
     }
   }
-
-  
 }
 
-
 .box {
-  margin:0 auto;
+  margin: 0 auto;
   border-radius: 5px;
   text-align: center;
 }
 
 .array {
-  --elem-width: 50px;
+  --elem-width: 80px;
   --elem-margin: 2px;
   --pointer-size: 30px;
+  
 
   .movable {
     transform: translateX(
@@ -60,15 +62,21 @@ body {
     position: relative;
     width: var(--elem-width);
     margin: 0 var(--elem-margin);
-    background-color: black;
-    border-radius: 5px;
     color: white;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    padding-bottom: 0.7rem;
-    transition: transform 0.7s linear;
-    
+    transition: transform var(--swap-animation-time) ease-in-out;
+
+    div {
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      padding-bottom: .4rem;
+      height:100%;
+      background-color: black;
+      
+      
+
+    }
   }
 
   &__pointers {
@@ -76,18 +84,40 @@ body {
     flex-direction: column;
 
     span {
-      border: 1px solid black;
-      width: var(--pointer-size);
-      height: var(--pointer-size);
+      font-size: 1.5rem;
+      position: relative;
+      width: var(--elem-width);
+      margin-left: var(--elem-margin);
       display: flex;
       align-items: center;
       justify-content: center;
       transition: all 0.2s;
-      margin: 4px
-        calc((var(--elem-width) - var(--pointer-size)) / 2 + var(--elem-margin));
-
       &:first-child {
-        margin-top: 10px;
+        margin-top: 60px;
+      }
+
+
+      &::before {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        content: '';
+        display: block;
+        background-color: black;
+        top: -40px;
+
+        clip-path: polygon(
+          0% 60%,
+          50% 0,
+          100% 60%,
+          60% 50%,
+          60% 100%,
+          40% 100%,
+          40% 50%
+        );
+
+        height: 30px;
+        width: 10px;
       }
     }
   }
@@ -100,16 +130,15 @@ button {
   border: none;
 }
 
-@keyframes jump {
+@keyframes scaleUp {
   0% {
-    transform: translateY(0);
-  }
-  
-  50% {
-    transform: translateY(-50px);
-  }
-  100% {
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 
+  50% {
+    transform: translateY(-50px) scale(1.2);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
 }
