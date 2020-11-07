@@ -80,21 +80,22 @@ body {
   }
 
   &__pointers {
+    position:relative;
     display: flex;
-    flex-direction: column;
+    // flex-direction: column;
+    align-items: flex-end;
+    margin-top:7rem;
 
     span {
+      position:absolute;
+      left:0;
       font-size: 1.5rem;
-      position: relative;
       width: var(--elem-width);
       margin-left: var(--elem-margin);
       display: flex;
       align-items: center;
       justify-content: center;
       transition: all 0.2s;
-      &:first-child {
-        margin-top: 60px;
-      }
 
 
       &::before {
