@@ -7,23 +7,25 @@ export class SelectionSort extends SortingBase {
   constructor(arr: number[]) {
     super(arr, { j: 1, i: 0 });
     this.currMinValue = 0;
-    this.actions = [];
+    this.statusMessage = 'Initialize two pointers "let i = 0" and "let j = i+1".'
   }
 
   public nextStep() {
     this.actions = [];
 
-    if (this.arr[this.pointers.j] < this.arr[this.currMinValue]) {
-      this.markNewMinimumValue();
-    } else if (this.pointers.j === this.arr.length - 1) {
-      this.doSwap();
-      if (this.pointers.i !== this.arr.length - 2) {
-        this.startNewRound();
+    if (!this.didFinish) {
+      if (this.arr[this.pointers.j] < this.arr[this.currMinValue]) {
+        this.markNewMinimumValue();
+      } else if (this.pointers.j === this.arr.length - 1) {
+        this.doSwap();
+        if (this.pointers.i !== this.arr.length - 2) {
+          this.startNewRound();
+        } else {
+          this.finish();
+        }
       } else {
-        this.finish();
+        this.incrementJ();
       }
-    } else {
-      this.incrementJ();
     }
   }
 
@@ -32,6 +34,7 @@ export class SelectionSort extends SortingBase {
     this.actions.push({
       action: 'FINISHED',
     });
+    this.didFinish = true;
   }
 
   private markNewMinimumValue() {

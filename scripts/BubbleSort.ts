@@ -4,12 +4,13 @@ import { SortingBase } from './SortingBase';
 export class BubbleSort extends SortingBase {
 
     constructor(arr:number[]) {
-        super(arr,{i:1});
+        super(arr,{j:1,i:arr.length-1});
+        
     }
     
     nextStep() {
         if(this.arr[this.pointers.i - 1] > this.arr[this.pointers.i]) {
-            
+            this.doSwap();
         }
 
         
@@ -17,4 +18,13 @@ export class BubbleSort extends SortingBase {
 
 
 
+
+    private doSwap() {
+        this.swap(this.pointers.i - 1, this.pointers.i);
+        this.actions.push({
+            action: 'SWAP',
+            indexOne: this.pointers.i - 1,
+            indexTwo: this.pointers.i
+        });
+    }
 }

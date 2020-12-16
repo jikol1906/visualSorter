@@ -8,11 +8,13 @@ const swapAnimationTime = +$(':root')
   .css('--swap-animation-time')
   .replace('s', '');
 
+let interval: NodeJS.Timer;
 const arrayContainer = $('.array__container');
 const nextStepButton = $('#next-step');
 const newArrayButton = $('#new');
+const autoButton = $('#auto');
 const statusmessage = $('#statusmessage');
-let canSwap = true;
+let isSwapping = false;
 let arr: number[] = [];
 let sortingAlgoIterator: SortingAlgorithmIterator;
 console.log(swapAnimationTime);
@@ -27,11 +29,26 @@ newArrayButton.on('click', () => {
   initialize();
 });
 
+autoButton.on('click', () => {
+  if (!interval) {
+    $(autoButton).text('Stop');
+    interval = setInterval(() => {
+      doNextStep();
+    }, 200);
+  } else {
+    $(autoButton).text('Start');
+    clearInterval(interval);
+    interval = null;
+  }
+});
+
 function initialize() {
   statusmessage.text('');
   genNewArr();
 
   sortingAlgoIterator = new SelectionSort(arr);
+
+  statusmessage.text(sortingAlgoIterator.getStatusMessage());
 
   addPointers();
 }
@@ -53,7 +70,7 @@ function genNewArr(): void {
   arr = [];
   arrayContainer.empty();
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 12; i++) {
     const num = Math.ceil(Math.random() * 130 + 20);
 
     arr.push(num);
@@ -71,12 +88,12 @@ function genNewArr(): void {
 }
 
 function swap(i: number, j: number) {
-  if (canSwap) {
-    canSwap = false;
+  if (!isSwapping) {
+    isSwapping = true;
     swapInUI(i, j);
     setTimeout(() => {
-      canSwap = true;
-    }, 0.7 * 1000);
+      isSwapping = false;
+    }, swapAnimationTime * 1000);
   }
 }
 
@@ -125,22 +142,22 @@ function movePointer(p: string, toIndex: number) {
 }
 
 function doNextStep() {
-  sortingAlgoIterator.nextStep();
-  statusmessage.text(sortingAlgoIterator.getStatusMessage());
-  sortingAlgoIterator.getActions().forEach((s) => {
-    switch (s.action) {
-      case 'MOVE_POINTER':
-        movePointer(s.pointer, s.index);
-        break;
-      case 'SWAP':
-        swap(s.indexOne, s.indexTwo);
-        break;
-      case 'MARK_AS_MINIMUM':
-      // markElem(s.index)
-      case 'FINISHED':
-      // reset();
-    }
-  });
+  if (!isSwapping) {
+    sortingAlgoIterator.nextStep();
+    statusmessage.text(sortingAlgoIterator.getStatusMessage());
+    sortingAlgoIterator.getActions().forEach((s) => {
+      switch (s.action) {
+        case 'MOVE_POINTER':
+          movePointer(s.pointer, s.index);
+          break;
+        case 'SWAP':
+          swap(s.indexOne, s.indexTwo);
+          break;
+        case 'MARK_AS_MINIMUM':
+        // markElem(s.index)
+        case 'FINISHED':
+        // reset();
+      }
+    });
+  }
 }
-
-//
