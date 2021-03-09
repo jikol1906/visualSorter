@@ -12,7 +12,7 @@ export class SelectionSort extends SortingBase {
 
   public nextStep() {
     this.actions = [];
-
+    
     if (!this.didFinish) {
       if (this.arr[this.pointers.j] < this.arr[this.currMinValue]) {
         this.markNewMinimumValue();

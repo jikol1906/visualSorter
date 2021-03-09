@@ -8,7 +8,7 @@ const swapAnimationTime = +$(':root')
   .css('--swap-animation-time')
   .replace('s', '');
 
-let interval: NodeJS.Timer;
+let interval: number;
 const arrayContainer = $('.array__container');
 const nextStepButton = $('#next-step');
 const newArrayButton = $('#new');
@@ -17,7 +17,6 @@ const statusmessage = $('#statusmessage');
 let isSwapping = false;
 let arr: number[] = [];
 let sortingAlgoIterator: SortingAlgorithmIterator;
-console.log(swapAnimationTime);
 
 initialize();
 
@@ -34,7 +33,7 @@ autoButton.on('click', () => {
     $(autoButton).text('Stop');
     interval = setInterval(() => {
       doNextStep();
-    }, 200);
+    }, 400);
   } else {
     $(autoButton).text('Start');
     clearInterval(interval);

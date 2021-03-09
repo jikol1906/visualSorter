@@ -1,9 +1,10 @@
 html {
   height: 100%;
+  font-size: 62.5%;
 }
 
 :root {
-  --swap-animation-time: .6s;
+  --swap-animation-time: 0.6s;
 }
 
 * {
@@ -12,6 +13,23 @@ html {
 
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.button-wrapper {
+  display: flex;
+
+  > button {
+    flex: 1;
+    margin-top: 2rem;
+    padding: 1.2rem 2rem;
+    background-color: firebrick;
+    color:white;
+    border: none;
+
+    &:not(:last-child) {
+      margin-right: 2rem;
+    }
+  }
 }
 
 .container {
@@ -44,12 +62,9 @@ body {
   --elem-width: 40px;
   --elem-margin: 2px;
   --pointer-size: 30px;
-  
 
   .movable {
-    transform: translateX(
-      calc((var(--elem-width) + var(--elem-margin) * 2) * var(--offset))
-    );
+    transform: translateX(calc((var(--elem-width) + var(--elem-margin) * 2) * var(--offset)));
   }
 
   &__container {
@@ -70,25 +85,22 @@ body {
       display: flex;
       justify-content: center;
       align-items: flex-end;
-      padding-bottom: .4rem;
-      height:100%;
+      padding-bottom: 0.4rem;
+      height: 100%;
       background-color: black;
-      
-      
-
     }
   }
 
   &__pointers {
-    position:relative;
+    position: relative;
     display: flex;
     // flex-direction: column;
     align-items: flex-end;
-    margin-top:7rem;
+    margin-top: 7rem;
 
     span {
-      position:absolute;
-      left:0;
+      position: absolute;
+      left: 0;
       font-size: 1.5rem;
       width: var(--elem-width);
       margin-left: var(--elem-margin);
@@ -97,38 +109,22 @@ body {
       justify-content: center;
       transition: all 0.2s;
 
-
       &::before {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        content: '';
+        content: "";
         display: block;
         background-color: black;
         top: -40px;
 
-        clip-path: polygon(
-          0% 60%,
-          50% 0,
-          100% 60%,
-          60% 50%,
-          60% 100%,
-          40% 100%,
-          40% 50%
-        );
+        clip-path: polygon(0% 60%, 50% 0, 100% 60%, 60% 50%, 60% 100%, 40% 100%, 40% 50%);
 
         height: 30px;
         width: 10px;
       }
     }
   }
-}
-
-button {
-  margin-top: 2rem;
-  padding: 1.2rem 2rem;
-  background-color: firebrick;
-  border: none;
 }
 
 @keyframes scaleUp {
