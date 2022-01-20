@@ -26,6 +26,7 @@ body {
   > button {
     flex: 1;
     margin-top: 2rem;
+    font-size: 1.4rem;
     padding: 1.2rem 2rem;
     background-color: firebrick;
     color:white;
@@ -39,7 +40,7 @@ body {
 
 .container {
   padding: 3rem;
-  max-width: 1000px;
+  max-width: 100rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -59,14 +60,14 @@ body {
 
 .box {
   margin: 0 auto;
-  border-radius: 5px;
+  border-radius: .5rem;
   text-align: center;
 }
 
 .array {
-  --elem-width: 40px;
-  --elem-margin: 2px;
-  --pointer-size: 30px;
+  --elem-width: 4rem;
+  --elem-margin: .2rem;
+  --pointer-size: 3rem;
 
   .movable {
     transform: translateX(calc((var(--elem-width) + var(--elem-margin) * 2) * var(--offset)));
@@ -75,7 +76,7 @@ body {
   &__container {
     display: flex;
     align-items: flex-end;
-    height: 250px;
+    height: 25rem;
   }
 
   &__elem {
@@ -86,7 +87,7 @@ body {
     transition: transform var(--swap-animation-time) ease-in-out;
 
     div {
-      border-radius: 5px;
+      border-radius: .5rem;
       display: flex;
       justify-content: center;
       align-items: flex-end;
@@ -121,12 +122,12 @@ body {
         content: "";
         display: block;
         background-color: black;
-        top: -40px;
+        top: -4rem;
 
         clip-path: polygon(0% 60%, 50% 0, 100% 60%, 60% 50%, 60% 100%, 40% 100%, 40% 50%);
 
-        height: 30px;
-        width: 10px;
+        height: 3rem;
+        width: 1rem;
       }
     }
   }
@@ -138,7 +139,7 @@ body {
   }
 
   50% {
-    transform: translateY(-50px) scale(1.2);
+    transform: translateY(-5rem) scale(1.2);
   }
   100% {
     transform: translateY(0) scale(1);
