@@ -8,7 +8,7 @@ const swapAnimationTime = +$(':root')
   .css('--swap-animation-time')
   .replace('s', '');
 
-let interval: number;
+let interval: NodeJS.Timer;
 const arrayContainer = $('.array__container');
 const nextStepButton = $('#next-step');
 const newArrayButton = $('#new');
@@ -144,7 +144,7 @@ function doNextStep() {
   if (!isSwapping) {
     sortingAlgoIterator.nextStep();
     statusmessage.text(sortingAlgoIterator.getStatusMessage());
-    sortingAlgoIterator.getActions().forEach((s) => {
+    sortingAlgoIterator.getActions().forEach((s) => {      
       switch (s.action) {
         case 'MOVE_POINTER':
           movePointer(s.pointer, s.index);

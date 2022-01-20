@@ -2,7 +2,7 @@ import {
   SortAction,
   SortingAlgorithmIterator,
 } from './SortingAlgorithmIterator';
-import $ from 'jquery';
+
 
 export abstract class SortingBase implements SortingAlgorithmIterator {
   protected statusMessage: string;
