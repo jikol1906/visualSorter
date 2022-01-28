@@ -31,6 +31,10 @@ newArrayButton.on('click', () => {
   initialize();
 });
 
+select.on('input',e => {
+    initialize()
+})
+
 autoButton.on('click', () => {
   if (!interval) {
     $(autoButton).text('Stop');
