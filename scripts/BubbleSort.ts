@@ -23,6 +23,15 @@ export class BubbleSort extends SortingBase {
     }
 
 
+    private incrementI() {
+        this.pointers.i++;
+        this.statusMessage = 'Incrementing i...';
+        this.actions.push({
+          action: 'MOVE_POINTER',
+          pointer: 'i',
+          index: this.pointers.i,
+        });
+      }
 
     private doSwap() {
         this.swap(this.pointers.i - 1, this.pointers.i);
