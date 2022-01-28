@@ -8,14 +8,23 @@ export class BubbleSort extends SortingBase {
     constructor(arr:number[]) {
         super(arr);
         this.pointers = {i:1,j:arr.length}
+        this.statusMessage = 'Initialize i';
     }
     
     nextStep() {
-        this.actions = [];
-        if(this.arr[this.pointers.i - 1] > this.arr[this.pointers.i]) {
-            this.doSwap();
+        if(this.pointers.j === 1) {this.finish()}
+        if(!this.didFinish) {
+            this.actions = [];
+            if(this.arr[this.pointers.i - 1] > this.arr[this.pointers.i]) {
+                this.doSwap();
+            }
+    
+            if(this.pointers.i < this.pointers.j - 1) {
+                this.incrementI()
+            } else {
+                this.startNewRound()
+            }
         }
-
         
     }
 
