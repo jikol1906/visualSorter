@@ -3,9 +3,11 @@ import { SortingBase } from './SortingBase';
 
 export class BubbleSort extends SortingBase {
 
+    readonly pointers:{i:number,j:number}
+
     constructor(arr:number[]) {
-        super(arr,{j:1,i:arr.length-1});
-        
+        super(arr);
+        this.pointers = {i:1,j:arr.length}
     }
     
     nextStep() {
@@ -16,6 +18,9 @@ export class BubbleSort extends SortingBase {
         
     }
 
+    getPointers()  {
+        return this.pointers;
+    }
 
 
 

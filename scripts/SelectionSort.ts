@@ -3,11 +3,17 @@ import { SortingBase } from './SortingBase';
 
 export class SelectionSort extends SortingBase {
   private currMinValue: number;
+  readonly pointers : {i:number, j:number}
 
   constructor(arr: number[]) {
-    super(arr, { j: 1, i: 0 });
+    super(arr);
     this.currMinValue = 0;
+    this.pointers = { j: 1, i: 0 };
     this.statusMessage = 'Initialize two pointers "let i = 0" and "let j = i+1".'
+  }
+
+  public getPointers() : {i:number, j:number} {
+      return this.pointers;
   }
 
   public nextStep() {

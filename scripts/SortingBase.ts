@@ -10,7 +10,6 @@ export abstract class SortingBase implements SortingAlgorithmIterator {
   protected didFinish : boolean;
   constructor(
     protected arr: number[],
-    protected readonly pointers: { [index: string]: number },
   ) {
     this.actions = [];
     this.didFinish = false;
@@ -38,9 +37,7 @@ export abstract class SortingBase implements SortingAlgorithmIterator {
     this.didFinish = true;
   }
 
-  public getPointers() {
-    return this.pointers;
-  }
+  abstract getPointers(): {[pointerName:string]:number};
 
   public getStatusMessage() {
     return this.statusMessage;
