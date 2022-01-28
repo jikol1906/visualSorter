@@ -52,7 +52,18 @@ function initialize() {
   statusmessage.text('');
   genNewArr();
 
-  sortingAlgoIterator = new SelectionSort(arr);
+  const currentlySelected : Algorithm = select.val() as Algorithm;
+
+  switch(currentlySelected) {
+    case 'Selection Sort':
+      sortingAlgoIterator = new SelectionSort(arr);
+      break;
+    case 'Bubble Sort':
+      sortingAlgoIterator = new BubbleSort(arr);
+      break
+
+  }
+  
 
   statusmessage.text(sortingAlgoIterator.getStatusMessage());
 
