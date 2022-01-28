@@ -22,6 +22,12 @@ export abstract class SortingBase implements SortingAlgorithmIterator {
     const temp = this.arr[i];
     this.arr[i] = this.arr[j];
     this.arr[j] = temp;
+
+    this.actions.push({
+      action: 'SWAP',
+      indexOne: i,
+      indexTwo: j
+  });
   }
 
   protected finish() {

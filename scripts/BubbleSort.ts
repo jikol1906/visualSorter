@@ -21,10 +21,5 @@ export class BubbleSort extends SortingBase {
 
     private doSwap() {
         this.swap(this.pointers.i - 1, this.pointers.i);
-        this.actions.push({
-            action: 'SWAP',
-            indexOne: this.pointers.i - 1,
-            indexTwo: this.pointers.i
-        });
     }
 }

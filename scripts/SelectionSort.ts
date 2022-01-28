@@ -46,11 +46,6 @@ export class SelectionSort extends SortingBase {
       this.statusMessage = `swapping ${this.arr[this.pointers.i]} and ${
         this.arr[this.currMinValue]
       } and incrementing i`;
-      this.actions.push({
-        action: 'SWAP',
-        indexOne: this.currMinValue,
-        indexTwo: this.pointers.i,
-      });
       this.swap(this.pointers.i, this.currMinValue);
     } else {
       this.statusMessage = `No swaps. ${
