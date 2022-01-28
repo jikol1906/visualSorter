@@ -64,6 +64,13 @@ body {
   text-align: center;
 }
 
+#algorithm-select {
+  height: 4rem;
+  display: block;
+  width: 100%;
+  margin: 3rem 0;
+}
+
 .array {
   --elem-width: 4rem;
   --elem-margin: .2rem;
