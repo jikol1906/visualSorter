@@ -2,6 +2,7 @@ import { BubbleSort } from './BubbleSort';
 import { SortingAlgorithmIterator } from './SortingAlgorithmIterator';
 import { SelectionSort } from './SelectionSort';
 import '../styles/styles.scss';
+import {algorithms,Algorithm} from './types'
 import $ from 'jquery';
 
 const swapAnimationTime = +$(':root')
@@ -12,12 +13,14 @@ let interval: NodeJS.Timer;
 const arrayContainer = $('.array__container');
 const nextStepButton = $('#next-step');
 const newArrayButton = $('#new');
+const select = $<HTMLSelectElement>('#algorithm-select');
 const autoButton = $('#auto');
 const statusmessage = $('#statusmessage');
 let isSwapping = false;
 let arr: number[] = [];
 let sortingAlgoIterator: SortingAlgorithmIterator;
 
+initializeDropdown();
 initialize();
 
 nextStepButton.on('click', () => {
@@ -50,6 +53,13 @@ function initialize() {
   statusmessage.text(sortingAlgoIterator.getStatusMessage());
 
   addPointers();
+}
+
+
+function initializeDropdown() {
+  algorithms.forEach(a => {
+    select.append(`<option value="${a}">${a}</option>`)
+  })
 }
 
 function addPointers() {
