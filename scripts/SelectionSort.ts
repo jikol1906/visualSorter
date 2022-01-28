@@ -29,13 +29,6 @@ export class SelectionSort extends SortingBase {
     }
   }
 
-  private finish() {
-    this.statusMessage = 'Finished';
-    this.actions.push({
-      action: 'FINISHED',
-    });
-    this.didFinish = true;
-  }
 
   private markNewMinimumValue() {
     this.statusMessage = `mark ${

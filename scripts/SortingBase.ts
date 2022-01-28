@@ -24,6 +24,14 @@ export abstract class SortingBase implements SortingAlgorithmIterator {
     this.arr[j] = temp;
   }
 
+  protected finish() {
+    this.statusMessage = 'Finished';
+    this.actions.push({
+      action: 'FINISHED',
+    });
+    this.didFinish = true;
+  }
+
   public getPointers() {
     return this.pointers;
   }
