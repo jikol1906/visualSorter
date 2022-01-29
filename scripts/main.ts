@@ -13,14 +13,22 @@ let interval: NodeJS.Timer;
 const arrayContainer = $('.array__container');
 const nextStepButton = $('#next-step');
 const newArrayButton = $('#new');
-const select = $<HTMLSelectElement>('#algorithm-select');
+const algoButtons = $("#algorithm-buttons");
 const autoButton = $('#auto');
 const statusmessage = $('#statusmessage');
 let isSwapping = false;
 let arr: number[] = [];
+let currentAlgorithm : Algorithm = 'Selection Sort';
 let sortingAlgoIterator: SortingAlgorithmIterator;
 
-initializeDropdown();
+algoButtons.on("click","*",(e) => {
+  algoButtons.children().removeClass("active")
+  $(e.target).addClass("active")
+  currentAlgorithm = $(e.target).text() as Algorithm
+  initialize();
+})
+
+initializeButtons();
 initialize();
 
 nextStepButton.on('click', () => {
@@ -30,10 +38,6 @@ nextStepButton.on('click', () => {
 newArrayButton.on('click', () => {
   initialize();
 });
-
-select.on('input',e => {
-    initialize()
-})
 
 autoButton.on('click', () => {
   toggleAutoClick();
@@ -65,9 +69,9 @@ function initialize() {
   stopAutoClick()
   genNewArr();
 
-  const currentlySelected : Algorithm = select.val() as Algorithm;
+  
 
-  switch(currentlySelected) {
+  switch(currentAlgorithm) {
     case 'Selection Sort':
       sortingAlgoIterator = new SelectionSort(arr);
       break;
@@ -84,9 +88,11 @@ function initialize() {
 }
 
 
-function initializeDropdown() {
+function initializeButtons() {
+  let firstAppended = false;
   algorithms.forEach(a => {
-    select.append(`<option value="${a}">${a}</option>`)
+    algoButtons.append(`<button class="${!firstAppended ? "active": ""}">${a}</button>`)
+    firstAppended = true
   })
 }
 
