@@ -192,7 +192,9 @@ function doNextStep() {
           break;
         case 'MARK_AS_MINIMUM':
         // markElem(s.index)
+          break;
         case 'FINISHED':
+          stopAutoClick();
         // reset();
       }
     });
