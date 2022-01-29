@@ -1,9 +1,7 @@
 html {
   height: 100%;
   font-size: min(1vw,62.5%);
-  background: hsla(191, 75%, 60%, 1);
-
-background: linear-gradient(90deg, hsla(191, 75%, 60%, 1) 0%, hsla(248, 87%, 36%, 1) 100%);
+  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
 }
 
 :root {
@@ -12,6 +10,11 @@ background: linear-gradient(90deg, hsla(191, 75%, 60%, 1) 0%, hsla(248, 87%, 36%
 
 * {
   box-sizing: border-box;
+}
+
+main {
+  margin: auto;
+  text-align: center;
 }
 
 body {
@@ -88,7 +91,6 @@ body {
 }
 
 #algorithm-select {
-  height: 4rem;
   display: block;
   width: 100%;
   margin: 3rem 0;
@@ -123,7 +125,6 @@ body {
     transition: transform var(--swap-animation-time) ease-in-out;
 
     div {
-      border-radius: .5rem;
       display: flex;
       justify-content: center;
       align-items: flex-end;
@@ -159,7 +160,6 @@ body {
         display: block;
         background-color: black;
         top: -4rem;
-
         clip-path: polygon(0% 60%, 50% 0, 100% 60%, 60% 50%, 60% 100%, 40% 100%, 40% 50%);
 
         height: 3rem;
