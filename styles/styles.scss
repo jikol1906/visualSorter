@@ -40,6 +40,11 @@ body {
     text-transform: uppercase;
     letter-spacing: 2px;
 
+    svg {
+      width: auto;
+      height: 2rem;
+    }
+
     &:not(:last-child) {
       margin-right: 2rem;
     }

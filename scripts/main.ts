@@ -40,14 +40,14 @@ autoButton.on('click', () => {
 });
 
 function startAutoClick() {
-  autoButton.text('Stop');
+  autoButton.html('<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path d="M12 6h-2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2z" fill="currentColor"/><path d="M22 6h-2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2z" fill="currentColor"/></svg>');
   interval = setInterval(() => {
     doNextStep();
   }, 400);
 }
 
 function stopAutoClick() {
-  autoButton.text('Start');
+  autoButton.html('<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path d="M7 28a1 1 0 0 1-1-1V5a1 1 0 0 1 1.482-.876l20 11a1 1 0 0 1 0 1.752l-20 11A1 1 0 0 1 7 28z" fill="currentColor"/></svg>');
   clearInterval(interval);
   interval = null;
 }
