@@ -36,17 +36,29 @@ select.on('input',e => {
 })
 
 autoButton.on('click', () => {
-  if (!interval) {
-    $(autoButton).text('Stop');
-    interval = setInterval(() => {
-      doNextStep();
-    }, 400);
-  } else {
-    $(autoButton).text('Start');
-    clearInterval(interval);
-    interval = null;
-  }
+  toggleAutoClick();
 });
+
+function startAutoClick() {
+  autoButton.text('Stop');
+  interval = setInterval(() => {
+    doNextStep();
+  }, 400);
+}
+
+function stopAutoClick() {
+  autoButton.text('Start');
+  clearInterval(interval);
+  interval = null;
+}
+
+function toggleAutoClick() {
+  if (!interval) {
+    startAutoClick()
+  } else {
+    stopAutoClick()
+  }
+}
 
 function initialize() {
   statusmessage.text('');
