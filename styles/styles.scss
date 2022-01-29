@@ -39,6 +39,9 @@ body {
     color:white;
     text-transform: uppercase;
     letter-spacing: 2px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
 
     svg {
       width: auto;
