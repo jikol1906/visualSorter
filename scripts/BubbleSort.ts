@@ -1,13 +1,9 @@
-import { SortAction, SortingAlgorithmIterator } from './SortingAlgorithmIterator';
 import { SortingBase } from './SortingBase';
 
-export class BubbleSort extends SortingBase {
-
-    readonly pointers:{i:number,j:number}
+export class BubbleSort extends SortingBase<{i:number,j:number}> {
 
     constructor(arr:number[]) {
-        super(arr);
-        this.pointers = {i:1,j:arr.length}
+        super(arr,{i:1,j:arr.length});
         this.statusMessage = 'Initialize i';
     }
     
@@ -26,10 +22,6 @@ export class BubbleSort extends SortingBase {
             }
         }
         
-    }
-
-    getPointers()  {
-        return this.pointers;
     }
 
     private startNewRound() {

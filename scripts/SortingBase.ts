@@ -4,14 +4,17 @@ import {
 } from './SortingAlgorithmIterator';
 
 
-export abstract class SortingBase implements SortingAlgorithmIterator {
+export abstract class SortingBase<T extends Record<string,number> = Record<string,number>> implements SortingAlgorithmIterator {
   protected statusMessage: string;
   protected actions: SortAction[];
   protected didFinish : boolean;
+  protected pointers : T;
   constructor(
     protected arr: number[],
+    pointers: T,
   ) {
     this.actions = [];
+    this.pointers = pointers;
     this.didFinish = false;
   }
 
@@ -37,7 +40,9 @@ export abstract class SortingBase implements SortingAlgorithmIterator {
     this.didFinish = true;
   }
 
-  abstract getPointers(): {[pointerName:string]:number};
+  public getPointers() {
+    return this.pointers
+  }
 
   public getStatusMessage() {
     return this.statusMessage;

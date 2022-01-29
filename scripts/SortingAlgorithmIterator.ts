@@ -17,9 +17,9 @@ export type SortAction =
       action: 'FINISHED';
     };
 
-export interface SortingAlgorithmIterator {
+export interface SortingAlgorithmIterator<T extends Record<string,number> = Record<string,number>> {
   nextStep(): void;
   getActions(): SortAction[];
   getStatusMessage() : string;
-  getPointers(): {[pointerName:string]:number}
+  getPointers(): T
 }
