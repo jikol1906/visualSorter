@@ -42,6 +42,7 @@ body {
     display: inline-flex;
     justify-content: center;
     align-items: center;
+    transition: transform .5s ease-in-out;
 
     svg {
       width: auto;
@@ -50,6 +51,12 @@ body {
 
     &:not(:last-child) {
       margin-right: 2rem;
+    }
+
+    &.active {
+      color:#ffff00;
+      border-color: currentColor;      
+      transform:translateY(-4%)
     }
   }
 }
