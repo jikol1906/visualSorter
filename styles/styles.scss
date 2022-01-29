@@ -173,6 +173,12 @@ body {
   }
 }
 
+footer {
+  align-self: flex-start;
+  margin-left: 2rem;
+  font-size: 1rem;
+}
+
 @keyframes scaleUp {
   0% {
     transform: translateY(0) scale(1);
