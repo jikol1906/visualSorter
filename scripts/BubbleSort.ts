@@ -4,14 +4,16 @@ export class BubbleSort extends SortingBase<{i:number,j:number}> {
 
     constructor(arr:number[]) {
         super(arr,{i:1,j:arr.length});
-        this.statusMessage = 'Initialize i';
+        this.statusMessage = 'Initialize two pointers "let i = 0" and "let j = arr.length"';
     }
     
     nextStep() {
         if(this.pointers.j === 1) {this.finish()}
         this.actions = [];
+        this.statusMessage = '';
         if(!this.didFinish) {
             if(this.arr[this.pointers.i - 1] > this.arr[this.pointers.i]) {
+              this.statusMessage += `${this.arr[this.pointers.i - 1]} > ${this.arr[this.pointers.i]} swapping. `
                 this.doSwap();
             }
     
@@ -43,7 +45,7 @@ export class BubbleSort extends SortingBase<{i:number,j:number}> {
 
     private incrementI() {
         this.pointers.i++;
-        this.statusMessage = 'Incrementing i...';
+        this.statusMessage += 'Incrementing i...';
         this.actions.push({
           action: 'MOVE_POINTER',
           pointer: 'i',
