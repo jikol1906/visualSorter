@@ -10,8 +10,8 @@ export class BubbleSort extends SortingBase<{i:number,j:number}> {
     nextStep() {
         if(this.pointers.j === 1) {this.finish()}
         this.actions = [];
-        this.statusMessage = '';
         if(!this.didFinish) {
+            this.statusMessage = '';
             if(this.arr[this.pointers.i - 1] > this.arr[this.pointers.i]) {
               this.statusMessage += `${this.arr[this.pointers.i - 1]} > ${this.arr[this.pointers.i]} swapping. `
                 this.doSwap();
@@ -20,6 +20,7 @@ export class BubbleSort extends SortingBase<{i:number,j:number}> {
             if(this.pointers.i < this.pointers.j - 1) {
                 this.incrementI()
             } else {
+                this.statusMessage += 'Starting new round..';
                 this.startNewRound()
             }
         }
