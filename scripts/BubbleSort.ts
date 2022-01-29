@@ -13,8 +13,8 @@ export class BubbleSort extends SortingBase {
     
     nextStep() {
         if(this.pointers.j === 1) {this.finish()}
+        this.actions = [];
         if(!this.didFinish) {
-            this.actions = [];
             if(this.arr[this.pointers.i - 1] > this.arr[this.pointers.i]) {
                 this.doSwap();
             }
