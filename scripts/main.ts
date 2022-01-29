@@ -62,6 +62,7 @@ function toggleAutoClick() {
 
 function initialize() {
   statusmessage.text('');
+  stopAutoClick()
   genNewArr();
 
   const currentlySelected : Algorithm = select.val() as Algorithm;
