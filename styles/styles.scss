@@ -102,6 +102,10 @@ body {
   margin-top:2rem;
 }
 
+#next-step {
+  touch-action: manipulation;
+}
+
 .array {
   --elem-width: 7rem;
   --elem-margin: .2rem;
