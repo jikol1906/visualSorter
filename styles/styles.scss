@@ -1,6 +1,9 @@
 html {
   height: 100%;
   font-size: min(1vw,62.5%);
+  background: hsla(191, 75%, 60%, 1);
+
+background: linear-gradient(90deg, hsla(191, 75%, 60%, 1) 0%, hsla(248, 87%, 36%, 1) 100%);
 }
 
 :root {
