@@ -4,6 +4,7 @@ import { SelectionSort } from './SelectionSort';
 import '../styles/styles.scss';
 import {algorithms,Algorithm} from './types'
 import $ from 'jquery';
+import { InsertionSort } from './InsertionSort';
 
 const swapAnimationTime = +$(':root')
   .css('--swap-animation-time')
@@ -77,6 +78,9 @@ function initialize() {
       break;
     case 'Bubble Sort':
       sortingAlgoIterator = new BubbleSort(arr);
+      break
+    case 'Insertion Sort':
+        sortingAlgoIterator = new InsertionSort(arr);
       break
 
   }
