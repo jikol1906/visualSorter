@@ -135,27 +135,24 @@ function genNewArr(): void {
 }
 
 function swap(i: number, j: number) {
-  if (!isSwapping) {
+  if(!isSwapping) {
     isSwapping = true;
-    swapInUI(i, j);
+    const leftElemIndex = Math.min(i, j);
+    const rightElemIndex = Math.max(i, j);
+  
+    const left = $(`#${leftElemIndex}`);
+    const right = $(`#${rightElemIndex}`);
+  
+    moveElem(left, rightElemIndex - leftElemIndex);
+    moveElem(right, leftElemIndex - rightElemIndex);
+  
+    left.attr('id', rightElemIndex);
+    right.attr('id', leftElemIndex);
+
     setTimeout(() => {
       isSwapping = false;
     }, swapAnimationTime * 1000);
   }
-}
-
-function swapInUI(i: number, j: number) {
-  const leftElemIndex = Math.min(i, j);
-  const rightElemIndex = Math.max(i, j);
-
-  const left = $(`#${leftElemIndex}`);
-  const right = $(`#${rightElemIndex}`);
-
-  moveElem(left, rightElemIndex - leftElemIndex);
-  moveElem(right, leftElemIndex - rightElemIndex);
-
-  left.attr('id', rightElemIndex);
-  right.attr('id', leftElemIndex);
 }
 
 function moveElem(elm: JQuery<HTMLElement>, stepsToMove: number) {
