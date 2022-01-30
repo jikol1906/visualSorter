@@ -18,6 +18,11 @@ export type SortAction =
       action :'HOVER_ELEMENT',
       index:number
     }
+  |
+    {
+      action :'DEHOVER_ELEMENT',
+      index:number
+    }
   | {
       action: 'FINISHED';
     };
