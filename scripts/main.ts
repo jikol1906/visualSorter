@@ -176,8 +176,17 @@ function applyScalingAnimation(elm: JQuery<HTMLElement>) {
   }, swapAnimationTime * 1000);
 }
 
-function markElem(index: number) {
-  $(`#${index}`).css('background-color', 'red');
+function hoverElem(index: number) {
+  const child = $(`#${index}`).children();
+  child.attr("data-hovered","true")
+  child.addClass("hovered")
+
+}
+function deHoverElem(index: number) {
+  const child = $(`#${index}`).children();
+  child.removeAttr("data-hovered")
+  child.removeClass("hovered")
+
 }
 
 function movePointer(p: string, toIndex: number) {
@@ -197,8 +206,11 @@ function doNextStep() {
         case 'SWAP':
           swap(s.indexOne, s.indexTwo);
           break;
-        case 'MARK_AS_MINIMUM':
-        // markElem(s.index)
+        case 'HOVER_ELEMENT':
+          hoverElem(s.index)
+          break;
+        case 'DEHOVER_ELEMENT':
+          deHoverElem(s.index)
           break;
         case 'FINISHED':
           stopAutoClick();
