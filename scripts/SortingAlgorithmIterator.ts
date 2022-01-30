@@ -13,6 +13,11 @@ export type SortAction =
       action: 'MARK_AS_MINIMUM';
       index: number;
     }
+  |
+    {
+      action :'HOVER_ELEMENT',
+      index:number
+    }
   | {
       action: 'FINISHED';
     };
