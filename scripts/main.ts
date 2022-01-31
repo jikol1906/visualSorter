@@ -17,10 +17,25 @@ const newArrayButton = $('#new');
 const algoButtons = $(".button-wrapper");
 const autoButton = $('#auto');
 const statusmessage = $('#statusmessage');
+let numOfItems = 12;
 let isSwapping = false;
 let arr: number[] = [];
 let currentAlgorithm : Algorithm = 'Selection Sort';
 let sortingAlgoIterator: SortingAlgorithmIterator;
+
+const m = window.matchMedia('(max-width: 34.375em)')
+
+function changeNumOfItems (e:MediaQueryList | MediaQueryListEvent) {
+  if (e.matches) {
+  numOfItems = 8
+  } else {
+  numOfItems = 12
+  }
+  initialize();
+}
+
+changeNumOfItems(m)
+m.addEventListener("change",changeNumOfItems)
 
 
 initializeButtons();
@@ -117,7 +132,7 @@ function genNewArr(): void {
   arr = [];
   arrayContainer.empty();
 
-  for (let i = 0; i < 12; i++) {
+  for (let i = 0; i < numOfItems; i++) {
     const num = Math.ceil(Math.random() * 130 + 20);
 
     arr.push(num);
