@@ -33,11 +33,14 @@ body {
 }
 
 .button-wrapper {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 3rem;
+  row-gap: 2rem;
+  margin-top: 2rem;
 
   > button {
-    flex: 1;
-    margin-top: 2rem;
+    
     font-size: 2rem;
     font-weight: bold;
     padding: 1.2rem 2rem;
@@ -48,7 +51,7 @@ body {
     color:var(--light);
     text-transform: uppercase;
     letter-spacing: 2px;
-    display: inline-flex;
+    display: flex;
     white-space: nowrap;
     justify-content: center;
     align-items: center;
@@ -57,10 +60,6 @@ body {
     svg {
       width: auto;
       height: 1em;
-    }
-
-    &:not(:last-child) {
-      margin-right: 2rem;
     }
 
     &.active {

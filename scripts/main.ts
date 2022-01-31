@@ -14,7 +14,7 @@ let interval: NodeJS.Timer;
 const arrayContainer = $('.array__container');
 const nextStepButton = $('#next-step');
 const newArrayButton = $('#new');
-const algoButtons = $("#algorithm-buttons");
+const algoButtons = $(".button-wrapper");
 const autoButton = $('#auto');
 const statusmessage = $('#statusmessage');
 let isSwapping = false;
@@ -22,16 +22,16 @@ let arr: number[] = [];
 let currentAlgorithm : Algorithm = 'Selection Sort';
 let sortingAlgoIterator: SortingAlgorithmIterator;
 
-algoButtons.on("click","*",(e) => {
+
+initializeButtons();
+initialize();
+
+algoButtons.on("click","*[data-algobutton]",(e) => {
   algoButtons.children().removeClass("active")
   $(e.target).addClass("active")
   currentAlgorithm = $(e.target).text() as Algorithm
   initialize();
 })
-
-initializeButtons();
-initialize();
-
 nextStepButton.on('click', () => {
   doNextStep();
 });
@@ -95,7 +95,7 @@ function initialize() {
 function initializeButtons() {
   let firstAppended = false;
   algorithms.forEach(a => {
-    algoButtons.append(`<button class="${!firstAppended ? "active": ""}">${a}</button>`)
+    algoButtons.append(`<button data-algobutton class="${!firstAppended ? "active": ""}">${a}</button>`)
     firstAppended = true
   })
 }
