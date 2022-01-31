@@ -161,7 +161,9 @@ function swap(i: number, j: number) {
 }
 
 function moveElem(elm: JQuery<HTMLElement>, stepsToMove: number) {
-  applyScalingAnimation(elm);
+  if(!elm.children().hasClass("hovered")) {
+    applyScalingAnimation(elm);
+  }
 
   const currentStepsMoved = parseInt(elm.css('--offset')) || 0;
   elm.css('--offset', stepsToMove + currentStepsMoved);
