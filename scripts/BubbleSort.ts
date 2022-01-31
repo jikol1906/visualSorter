@@ -18,7 +18,7 @@ export class BubbleSort extends SortingBase<{i:number,j:number}> {
             }
     
             if(this.pointers.i < this.pointers.j - 1) {
-                this.incrementI()
+                this.incrementPointer("i")
             } else {
                 this.statusMessage += 'Starting new round..';
                 this.startNewRound()
@@ -43,17 +43,7 @@ export class BubbleSort extends SortingBase<{i:number,j:number}> {
           index: this.pointers.j,
         });
       }
-
-    private incrementI() {
-        this.pointers.i++;
-        this.statusMessage += 'Incrementing i...';
-        this.actions.push({
-          action: 'MOVE_POINTER',
-          pointer: 'i',
-          index: this.pointers.i,
-        });
-      }
-
+      
     private doSwap() {
         this.swap(this.pointers.i - 1, this.pointers.i);
     }

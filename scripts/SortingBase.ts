@@ -40,6 +40,16 @@ export abstract class SortingBase<T extends Record<string,number> = Record<strin
     this.didFinish = true;
   }
 
+  protected incrementPointer(p : keyof T) {
+    this.pointers[p]++;
+    this.statusMessage += `Incrementing ${p}...`;
+    this.actions.push({
+      action: 'MOVE_POINTER',
+      pointer: p.toString(),
+      index: this.pointers[p],
+    });
+  }
+
   public getPointers() {
     return this.pointers
   }

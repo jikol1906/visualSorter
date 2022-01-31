@@ -25,7 +25,8 @@ export class SelectionSort extends SortingBase<{i:number,j:number}> {
           this.finish();
         }
       } else {
-        this.incrementJ();
+        this.statusMessage = "";
+        this.incrementPointer("j")
       }
     }
   }
@@ -53,16 +54,6 @@ export class SelectionSort extends SortingBase<{i:number,j:number}> {
         this.arr[this.pointers.i]
       } is already sorted`;
     }
-  }
-
-  private incrementJ() {
-    this.pointers.j++;
-    this.statusMessage = 'Incrementing j...';
-    this.actions.push({
-      action: 'MOVE_POINTER',
-      pointer: 'j',
-      index: this.pointers.j,
-    });
   }
 
   private startNewRound() {
