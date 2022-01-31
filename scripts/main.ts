@@ -142,6 +142,9 @@ function swap(i: number, j: number) {
   
     const left = $(`#${leftElemIndex}`);
     const right = $(`#${rightElemIndex}`);
+
+    left.css('z-index', '100');
+    right.css('z-index', '100');
   
     moveElem(left, rightElemIndex - leftElemIndex);
     moveElem(right, leftElemIndex - rightElemIndex);
@@ -150,6 +153,8 @@ function swap(i: number, j: number) {
     right.attr('id', leftElemIndex);
 
     setTimeout(() => {
+      left.css('z-index', '1');
+      right.css('z-index', '1');
       isSwapping = false;
     }, swapAnimationTime * 1000);
   }
@@ -163,7 +168,6 @@ function moveElem(elm: JQuery<HTMLElement>, stepsToMove: number) {
 }
 
 function applyScalingAnimation(elm: JQuery<HTMLElement>) {
-  elm.css('z-index', '100');
 
   const child = elm.children();
   child.css({
@@ -172,7 +176,6 @@ function applyScalingAnimation(elm: JQuery<HTMLElement>) {
 
   setTimeout(() => {
     child.css({ animation: '' });
-    elm.css('z-index', '1');
   }, swapAnimationTime * 1000);
 }
 
