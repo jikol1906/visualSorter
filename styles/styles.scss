@@ -28,14 +28,13 @@ html {
 main {
   margin: auto;
   text-align: center;
+  padding:3rem 0;
 }
 
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
 }
 
