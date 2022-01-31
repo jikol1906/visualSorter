@@ -1,10 +1,17 @@
+$bp-big:68.75em;
+$bp-md:44.75em;
+$bp-sm:34.375em;
+$bp-xsm:24em;
+
 html {
   height: 100%;
-  font-size: min(1vw,62.5%);
+  font-size: 62.5%;
   background: #000428;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #004e92, #000428);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #004e92, #000428); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+  background: -webkit-linear-gradient(to right, #004e92, #000428);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #004e92, #000428); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  @media only screen and (max-width:$bp-xsm) {
+    font-size: 50%;
+}
 
 
 }
@@ -38,10 +45,19 @@ body {
   column-gap: 3rem;
   row-gap: 2rem;
   margin-top: 2rem;
+  align-self: stretch;
+
+  @media only screen and (max-width:$bp-big) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media only screen and (max-width:$bp-sm) {
+    grid-template-columns: 1fr
+  }
 
   > button {
     
-    font-size: 2rem;
+    font-size: 1.4rem;
     font-weight: bold;
     padding: 1.2rem 2rem;
     background-color: transparent;
@@ -91,9 +107,9 @@ body {
 }
 
 .box {
-  margin: 0 auto;
-  border-radius: .5rem;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #algorithm-select {
@@ -105,7 +121,15 @@ body {
 #statusmessage {
   color:var(--light);
   text-transform: uppercase;
-  margin-top:2rem;
+  margin-top:3rem;
+
+  @media only screen and (max-width:$bp-md) {
+    font-size: 1rem;
+  }
+
+  @media only screen and (max-width:$bp-sm) {
+    display: none;
+  }
 }
 
 #next-step {
@@ -113,9 +137,19 @@ body {
 }
 
 .array {
-  --elem-width: 7rem;
+  --elem-width: 8rem;
   --elem-margin: .2rem;
   --pointer-size: 3rem;
+
+  @media only screen and (max-width:$bp-big) {
+    --elem-width: 5rem;
+  }
+  @media only screen and (max-width:$bp-md) {
+    --elem-width: 4rem;
+  }
+  @media only screen and (max-width:$bp-sm) {
+    --elem-width: 3rem;
+  }
 
   .movable {
     transform: translateX(calc((var(--elem-width) + var(--elem-margin) * 2) * var(--offset)));
