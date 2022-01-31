@@ -1,11 +1,17 @@
 html {
   height: 100%;
   font-size: min(1vw,62.5%);
-  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+  background: #000428;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #004e92, #000428);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #004e92, #000428); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+
 }
 
 :root {
   --swap-animation-time: 0.6s;
+  --light:#fff;
 }
 
 * {
@@ -36,10 +42,10 @@ body {
     font-weight: bold;
     padding: 1.2rem 2rem;
     background-color: transparent;
-    border:.4rem solid white;
+    border:.4rem solid var(--light);
     cursor: pointer;
     border-radius: 999px;
-    color:white;
+    color:var(--light);
     text-transform: uppercase;
     letter-spacing: 2px;
     display: inline-flex;
@@ -97,7 +103,7 @@ body {
 }
 
 #statusmessage {
-  color:white;
+  color:var(--light);
   text-transform: uppercase;
   margin-top:2rem;
 }
@@ -125,17 +131,17 @@ body {
     position: relative;
     width: var(--elem-width);
     margin: 0 var(--elem-margin);
-    color: white;
+    color: var(--light);
     transition: transform var(--swap-animation-time) ease-in-out;
 
     div {
       display: flex;
       justify-content: center;
       align-items: flex-end;
-      padding-bottom: 0.4rem;
+      padding-bottom: 1rem;
       height: 100%;
-      background-color: black;
-      transition: all .4s ease-in-out;
+      border:.3rem solid var(--light);
+      transition: transform .4s ease-in-out;
 
       &.hovered {
         transform:translateY(-4rem);
@@ -155,6 +161,7 @@ body {
       left: 0;
       font-size: 1.5rem;
       width: var(--elem-width);
+      color:var(--light);
       margin-left: var(--elem-margin);
       display: flex;
       align-items: center;
@@ -167,7 +174,7 @@ body {
         transform: translateX(-50%);
         content: "";
         display: block;
-        background-color: black;
+        background-color: var(--light);
         top: -4rem;
         clip-path: polygon(0% 60%, 50% 0, 100% 60%, 60% 50%, 60% 100%, 40% 100%, 40% 50%);
 
@@ -182,6 +189,11 @@ footer {
   align-self: flex-start;
   margin-left: 2rem;
   font-size: 1rem;
+  color:var(--light);
+
+  & a {
+    color: currentColor;
+  }
 }
 
 @keyframes scaleUp {
