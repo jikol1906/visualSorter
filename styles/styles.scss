@@ -1,6 +1,6 @@
 $bp-big:68.75em;
-$bp-md:44.75em;
-$bp-sm:34.375em;
+$bp-md:47.75em;
+$bp-sm:38.375em;
 $bp-xsm:24em;
 
 html {
@@ -28,7 +28,12 @@ html {
 main {
   margin: auto;
   text-align: center;
-  padding:3rem 0;
+  padding:4rem;
+  
+  @media only screen and (max-width:$bp-sm) {
+    margin: auto 0;
+    padding:7rem;
+  }
 }
 
 body {
@@ -132,7 +137,7 @@ body {
 }
 
 .array {
-  --elem-width: 8rem;
+  --elem-width: 7rem;
   --elem-margin: .2rem;
   --pointer-size: 3rem;
 
@@ -141,9 +146,6 @@ body {
   }
   @media only screen and (max-width:$bp-md) {
     --elem-width: 4rem;
-  }
-  @media only screen and (max-width:$bp-sm) {
-    --elem-width: 3rem;
   }
 
   .movable {
