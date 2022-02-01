@@ -120,7 +120,7 @@ function genNewArr(): void {
   arrayContainer.empty();
 
   for (let i = 0; i < numOfItems; i++) {
-    const num = Math.ceil(Math.random() * 130 + 20);
+    const num = Math.floor(Math.random()*80+20)
 
     arr.push(num);
 
@@ -128,7 +128,7 @@ function genNewArr(): void {
       class: 'array__elem movable',
       id: i,
       css: {
-        height: `${(num / 150) * 100}%`,
+        height: `${num}%`,
       },
     }).append(`<div>${num}</div>`);
 
