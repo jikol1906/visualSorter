@@ -148,6 +148,12 @@ body {
   @media only screen and (max-width:$bp-md) {
     --elem-width: 4rem;
   }
+  @media only screen and (max-width:$bp-sm) {
+    --elem-width: 3rem;
+  }
+  @media only screen and (max-width:$bp-xsm) {
+    --elem-width: 2.7rem;
+  }
 
   .movable {
     transform: translateX(calc((var(--elem-width) + var(--elem-margin) * 2) * var(--offset)));
@@ -170,6 +176,7 @@ body {
       display: flex;
       justify-content: center;
       align-items: flex-end;
+      font-size: .9rem;
       padding-bottom: 1rem;
       height: 100%;
       border:.3rem solid var(--light);

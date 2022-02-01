@@ -23,19 +23,6 @@ let arr: number[] = [];
 let currentAlgorithm : Algorithm = 'Selection Sort';
 let sortingAlgoIterator: SortingAlgorithmIterator;
 
-const m = window.matchMedia('(max-width: 38.375em)')
-
-function changeNumOfItems (e:MediaQueryList | MediaQueryListEvent) {
-  if (e.matches) {
-  numOfItems = 8
-  } else {
-  numOfItems = 12
-  }
-  initialize();
-}
-
-changeNumOfItems(m)
-m.addEventListener("change",changeNumOfItems)
 
 
 initializeButtons();
