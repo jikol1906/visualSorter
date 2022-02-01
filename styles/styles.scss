@@ -1,7 +1,7 @@
 $bp-big:68.75em;
 $bp-md:47.75em;
 $bp-sm:38.375em;
-$bp-xsm:24em;
+$bp-xsm:29.4375em;
 
 html {
   height: 100%;
@@ -124,6 +124,7 @@ body {
 
 #statusmessage {
   color:var(--light);
+  white-space: nowrap;
   text-transform: uppercase;
   margin-top:3rem;
 
