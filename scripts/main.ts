@@ -1,7 +1,6 @@
 import { BubbleSort } from './BubbleSort';
 import { SortingAlgorithmIterator } from './SortingAlgorithmIterator';
 import { SelectionSort } from './SelectionSort';
-import '../styles/styles.scss';
 import {algorithms,Algorithm} from './types'
 import $ from 'jquery';
 import { InsertionSort } from './InsertionSort';
